@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:marquee/marquee.dart';
+import 'package:flutter/material.dart';
 import 'package:unsplash/data/model/photo.dart';
+import 'package:glassmorphism/glassmorphism.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -15,15 +17,15 @@ class PostsView extends StatelessWidget {
       interactive: true,
 
       child: MasonryGridView.count(
-        padding: const EdgeInsets.all(0),
+        padding: const EdgeInsets.fromLTRB(4.0, 0.0, 6.0, 0.0),
         physics: const ClampingScrollPhysics(),
         crossAxisCount: 2,
-        mainAxisSpacing: 3,
-        crossAxisSpacing: 3,
+        mainAxisSpacing: 4,
+        crossAxisSpacing: 4,
         itemCount: posts.length,
         itemBuilder: (context, index) {
           final Photo photo = posts[index];
-          return Post(photo: photo);
+          return Post(photo: photo, index: index);
         },
       ),
     );
@@ -32,7 +34,8 @@ class PostsView extends StatelessWidget {
 
 class Post extends StatelessWidget {
   final Photo photo;
-  const Post({Key? key, required this.photo}) : super(key: key);
+  final int index;
+  const Post({Key? key, required this.photo, required this.index}) : super(key: key);
 
   Color getColorFromHex() {
     String hexColor = photo.color!;
@@ -55,31 +58,139 @@ class Post extends StatelessWidget {
         border: Border.all(color: getColorFromHex(), width: 3),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: CachedNetworkImage(
-        fit: BoxFit.cover,
-        imageUrl: photo.urls.full ?? '',
-        imageBuilder: (BuildContext context, ImageProvider imageProvider) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: Image(image: imageProvider, fit: BoxFit.cover),
-          );
-        },
-        // progressIndicatorBuilder: (context, url, downloadProgress) {
-        //   return Shimmer.fromColors(
-        //     baseColor: getColorFromHex().withOpacity(0.7),
-        //     highlightColor: getColorFromHex().withOpacity(0.3),
-        //     child: AspectRatio(
-        //       aspectRatio: photo.width! / photo.height!,
-        //       child: ColoredBox(color: getColorFromHex()),
-        //     ),
-        //   );
-        // },
-        placeholder: (context, url) => AspectRatio(
-          aspectRatio: photo.width! / photo.height!,
-          child: ColoredBox(color: getColorFromHex()),
-        ),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Flexible(
+            fit: FlexFit.loose,
+            child: CachedNetworkImage(
+              fit: BoxFit.cover,
+              imageUrl: photo.urls.full ?? '',
+              imageBuilder: (BuildContext context, ImageProvider imageProvider) {
+                return ClipRRect(
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(6)),
+                  child: Image(image: imageProvider, fit: BoxFit.cover),
+                );
+              },
+              // progressIndicatorBuilder: (context, url, downloadProgress) {
+              //   return Shimmer.fromColors(
+              //     baseColor: getColorFromHex().withOpacity(0.7),
+              //     highlightColor: getColorFromHex().withOpacity(0.3),
+              //     child: AspectRatio(
+              //       aspectRatio: photo.width! / photo.height!,
+              //       child: ColoredBox(color: getColorFromHex()),
+              //     ),
+              //   );
+              // },
+              placeholder: (context, url) => AspectRatio(
+                aspectRatio: photo.width! / photo.height!,
+                child: ColoredBox(color: getColorFromHex()),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
+          ),
+          ClipRRect(
+            borderRadius: const BorderRadius.vertical(bottom: Radius.circular(6)),
+            child: GlassmorphicContainer(
+              height: 50,
+              width: double.infinity,
+              border: 0,
+              borderRadius: 0,
+              blur: 50,
+              alignment: Alignment.bottomCenter,
+              linearGradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  index.isOdd ? getColorFromHex().withOpacity(0.3) : getColorFromHex().withOpacity(0.6),
+                  getColorFromHex().withOpacity(0.4),
+                  index.isOdd ? getColorFromHex().withOpacity(0.6) : getColorFromHex().withOpacity(0.3),
+                ],
+              ),
+              borderGradient: LinearGradient(
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+                colors: [
+                  index.isOdd ? getColorFromHex().withOpacity(0.3) : getColorFromHex().withOpacity(0.6),
+                  getColorFromHex().withOpacity(0.4),
+                  index.isOdd ? getColorFromHex().withOpacity(0.6) : getColorFromHex().withOpacity(0.3),
+                ],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                child: UserTile(photo: photo, color: getColorFromHex()),
+              ),
+            ),
+          ),
+        ],
       ),
+    );
+  }
+}
+
+class UserTile extends StatelessWidget {
+  final Photo photo;
+  final Color color;
+  const UserTile({Key? key, required this.photo, required this.color}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          height: 34,
+          width: 34,
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.white, width: 2),
+          ),
+          child: CachedNetworkImage(
+            fit: BoxFit.cover,
+            imageUrl: photo.user.profile_image.medium ?? '',
+            imageBuilder: (BuildContext context, ImageProvider imageProvider) {
+              return Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: const BoxDecoration(shape: BoxShape.circle),
+                child: Image(image: imageProvider, fit: BoxFit.cover),
+              );
+            },
+            progressIndicatorBuilder: (context, url, downloadProgress) {
+              return Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: const BoxDecoration(shape: BoxShape.circle),
+                child: Shimmer.fromColors(
+                  baseColor: color.withOpacity(0.7),
+                  highlightColor: color.withOpacity(0.3),
+                  child: AspectRatio(
+                    aspectRatio: photo.width! / photo.height!,
+                    child: ColoredBox(color: color),
+                  ),
+                )
+              );
+            },
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          ),
+        ),
+        const SizedBox(width: 6.0),
+        // Text(
+        //   photo.user.username ?? '',
+        //   textAlign: TextAlign.center,
+        //   maxLines: 1,
+        //   overflow: TextOverflow.ellipsis,
+        // ),
+        Expanded(
+          child: Marquee(
+            showFadingOnlyWhenScrolling: false,
+            text: photo.user.username ?? '',
+            style: const TextStyle(fontWeight: FontWeight.bold),
+            blankSpace: 20.0,
+            startPadding: 10.0,
+            velocity: 30.0,
+            startAfter: const Duration(seconds: 3),
+          ),
+        )
+      ],
     );
   }
 }

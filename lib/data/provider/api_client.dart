@@ -33,10 +33,15 @@ class ApiClient {
   Future? GET({required String api, required Map<String, dynamic> params}) async {
     try {
       Response response = await myDio.get(api, queryParameters: params);
-      print('****** API CLIENT GET METHOD ******');
+      print('🍀 ****** API CLIENT GET METHOD ******');
       print('\t response.data.runtimeType : ${response.data.runtimeType}');
       print('************************************');
       if (response.statusCode == 200 || response.statusCode == 201) {
+        final left = response.headers;
+        print('🍀 ****** RESPONSE HEADER => REMAINING REQUESTS ******');
+        print('Total Requests Available For An Hour Span: ${left['x-ratelimit-limit']}');
+        print('Available Requests Left: ${left['x-ratelimit-remaining']}');
+        print('***************************************************');
         return response.data;
       }
     } on DioError catch (_) {}

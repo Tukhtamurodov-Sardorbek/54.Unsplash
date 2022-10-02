@@ -13,8 +13,10 @@ class PhotoRepository {
     String url = 'https://api.unsplash.com/photos';
 
     try {
-      List<dynamic> posts = await apiClient.GET(api: url, params: ApiClient.paramsGET(page: 1, perPage: 30));
-      photos = posts.map((post) => Photo.fromJson(post)).toList();
+      List<dynamic>? posts = await apiClient.GET(api: url, params: ApiClient.paramsGET(page: 1, perPage: 30));
+      if(posts != null){
+        photos = posts.map((post) => Photo.fromJson(post)).toList();
+      }
     } catch (error, stacktrace) {
       print('\t Exception occurred: $error stacktrace: $stacktrace');
       return ResponseHandler()..error = ServerError.withError(error as DioError);
@@ -26,8 +28,8 @@ class PhotoRepository {
 
   Future<dynamic> getPhotos() async {
     final response = await _fetchPhotos();
-    print('****** PHOTO REPOSITORY ******');
-    print(response.data);
+    print('🍀 ****** PHOTO REPOSITORY ******');
+    print('Post Color: ${response.data?[0].color ?? 'No Post'}');
     print('******************************');
 
     if (response.data != null) {
