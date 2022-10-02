@@ -1,3 +1,4 @@
+import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:marquee/marquee.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +87,7 @@ class Post extends StatelessWidget {
                 aspectRatio: photo.width! / photo.height!,
                 child: ColoredBox(color: getColorFromHex()),
               ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
+              errorWidget: (context, url, error) => const FailedToLoad(),
             ),
           ),
           ClipRRect(
@@ -169,7 +170,7 @@ class UserTile extends StatelessWidget {
                 )
               );
             },
-            errorWidget: (context, url, error) => const Icon(Icons.error),
+            errorWidget: (context, url, error) => const FailedToLoad(),
           ),
         ),
         const SizedBox(width: 6.0),
@@ -191,6 +192,22 @@ class UserTile extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+}
+
+class FailedToLoad extends StatelessWidget {
+  const FailedToLoad({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Lottie.asset(
+        'assets/animations/lottie_nodata.json',
+        // height: 150,
+        // width: double.infinity,
+        fit: BoxFit.cover,
+      ),
     );
   }
 }

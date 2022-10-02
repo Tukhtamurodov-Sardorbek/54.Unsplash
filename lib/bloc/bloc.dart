@@ -14,6 +14,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       if (event is LoadEvent) {
         emit(LoadingState());
         final result = await photoRepository.getPhotos();
+        await Future.delayed(const Duration(seconds: 8));
         if (result is String) {
           emit(ErrorState(errorMessage: result));
         } else{

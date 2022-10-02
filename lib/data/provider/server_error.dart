@@ -25,7 +25,10 @@ class ServerError implements Exception{
 
   ServerError.withError(DioError error){
     _statusCode = error.response?.statusCode ?? 500;
-
+    print('***** ServerError.withError() *****');
+    print('***** ${error.type} *****');
+    print('***** ${error.message} *****');
+    print('***********************************');
     if(errors.containsKey(error.type)){
       _errorMessage = errors[error.type]!;
     } else if(error.type == DioErrorType.response){

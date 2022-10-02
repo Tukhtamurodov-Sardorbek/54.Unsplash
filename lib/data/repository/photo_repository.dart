@@ -29,7 +29,7 @@ class PhotoRepository {
   Future<dynamic> getPhotos() async {
     final response = await _fetchPhotos();
     print('🍀 ****** PHOTO REPOSITORY ******');
-    print('Post Color: ${response.data?[0].color ?? 'No Post'}');
+    print('IS RESPONSE NULL: ${response.data == null}');
     print('******************************');
 
     if (response.data != null) {
