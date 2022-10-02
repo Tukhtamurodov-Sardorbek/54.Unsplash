@@ -39,7 +39,7 @@ class ApiClient {
       if (response.statusCode == 200 || response.statusCode == 201) {
         return response.data;
       }
-    } on DioError catch (e) {}
+    } on DioError catch (_) {}
     return null;
   }
 
@@ -56,14 +56,14 @@ class ApiClient {
       if (response.statusCode == 200 || response.statusCode == 201) {
         return jsonEncode(response.data);
       }
-    } on DioError catch (e) {}
+    } on DioError catch (_) {}
     return null;
   }
 
   Future<String?> postFile({required String api, required File file}) async {
     FormData formData = FormData.fromMap(
       {
-        "file": MultipartFile.fromFileSync(
+        'file': MultipartFile.fromFileSync(
           file.path,
           filename: DateTime.now().toIso8601String(),
         ),
@@ -74,7 +74,7 @@ class ApiClient {
       if (response.statusCode == 200 || response.statusCode == 201) {
         return jsonEncode(response.data);
       }
-    } on DioError catch (e) {}
+    } on DioError catch (_) {}
     return null;
   }
 
@@ -85,7 +85,7 @@ class ApiClient {
         return jsonEncode(response.data);
       }
       return null;
-    } on DioError catch (e) {}
+    } on DioError catch (_) {}
     return null;
   }
 
@@ -113,13 +113,13 @@ class ApiClient {
       }
 
       return null;
-    } on DioError catch (e) {}
+    } on DioError catch (_) {}
     return null;
   }
 
   void showDownloadProgress(received, total) {
     if (total != -1) {
-      print((received / total * 100).toStringAsFixed(0) + "%");
+      print((received / total * 100).toStringAsFixed(0) + '%');
     }
   }
 
