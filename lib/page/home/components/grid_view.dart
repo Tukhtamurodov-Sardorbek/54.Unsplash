@@ -53,10 +53,11 @@ class Post extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = getColorFromHex();
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        border: Border.all(color: getColorFromHex(), width: 3),
+        border: Border.all(color: backgroundColor, width: 3),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -75,17 +76,17 @@ class Post extends StatelessWidget {
               },
               // progressIndicatorBuilder: (context, url, downloadProgress) {
               //   return Shimmer.fromColors(
-              //     baseColor: getColorFromHex().withOpacity(0.7),
-              //     highlightColor: getColorFromHex().withOpacity(0.3),
+              //     baseColor: backgroundColor.withOpacity(0.7),
+              //     highlightColor: backgroundColor.withOpacity(0.3),
               //     child: AspectRatio(
               //       aspectRatio: photo.width! / photo.height!,
-              //       child: ColoredBox(color: getColorFromHex()),
+              //       child: ColoredBox(color: backgroundColor),
               //     ),
               //   );
               // },
               placeholder: (context, url) => AspectRatio(
                 aspectRatio: photo.width! / photo.height!,
-                child: ColoredBox(color: getColorFromHex()),
+                child: ColoredBox(color: backgroundColor),
               ),
               errorWidget: (context, url, error) => const FailedToLoad(),
             ),
@@ -103,23 +104,23 @@ class Post extends StatelessWidget {
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [
-                  index.isOdd ? getColorFromHex().withOpacity(0.3) : getColorFromHex().withOpacity(0.6),
-                  getColorFromHex().withOpacity(0.4),
-                  index.isOdd ? getColorFromHex().withOpacity(0.6) : getColorFromHex().withOpacity(0.3),
+                  index.isOdd ? backgroundColor.withOpacity(0.3) : backgroundColor.withOpacity(0.6),
+                  backgroundColor.withOpacity(0.4),
+                  index.isOdd ? backgroundColor.withOpacity(0.6) : backgroundColor.withOpacity(0.3),
                 ],
               ),
               borderGradient: LinearGradient(
                 begin: Alignment.centerRight,
                 end: Alignment.centerLeft,
                 colors: [
-                  index.isOdd ? getColorFromHex().withOpacity(0.3) : getColorFromHex().withOpacity(0.6),
-                  getColorFromHex().withOpacity(0.4),
-                  index.isOdd ? getColorFromHex().withOpacity(0.6) : getColorFromHex().withOpacity(0.3),
+                  index.isOdd ? backgroundColor.withOpacity(0.3) : backgroundColor.withOpacity(0.6),
+                  backgroundColor.withOpacity(0.4),
+                  index.isOdd ? backgroundColor.withOpacity(0.6) : backgroundColor.withOpacity(0.3),
                 ],
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                child: UserTile(photo: photo, color: getColorFromHex()),
+                child: UserTile(photo: photo, color: backgroundColor),
               ),
             ),
           ),
@@ -158,16 +159,16 @@ class UserTile extends StatelessWidget {
             },
             progressIndicatorBuilder: (context, url, downloadProgress) {
               return Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: const BoxDecoration(shape: BoxShape.circle),
-                child: Shimmer.fromColors(
-                  baseColor: color.withOpacity(0.7),
-                  highlightColor: color.withOpacity(0.3),
-                  child: AspectRatio(
-                    aspectRatio: photo.width! / photo.height!,
-                    child: ColoredBox(color: color),
-                  ),
-                )
+                  clipBehavior: Clip.antiAlias,
+                  decoration: const BoxDecoration(shape: BoxShape.circle),
+                  child: Shimmer.fromColors(
+                    baseColor: color.withOpacity(0.7),
+                    highlightColor: color.withOpacity(0.3),
+                    child: AspectRatio(
+                      aspectRatio: photo.width! / photo.height!,
+                      child: ColoredBox(color: color),
+                    ),
+                  )
               );
             },
             errorWidget: (context, url, error) => const FailedToLoad(),
