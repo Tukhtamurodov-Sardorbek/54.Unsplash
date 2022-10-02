@@ -11,9 +11,10 @@ void main() {
   // * Orientation
   // await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  // * StatusBar Color
+  // * StatusBar & NavigationBar Colors
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
+      statusBarColor: Colors.black,
       systemNavigationBarColor: Colors.black,
     ),
   );
