@@ -21,9 +21,7 @@ class HomePage extends StatelessWidget {
           } else if (state is LoadedState) {
             return PostsView(posts: state.posts);
           } else if (state is ErrorState) {
-            return Center(
-              child: Text(state.errorMessage),
-            );
+            return Center(child: Text(state.errorMessage));
           }
           return const Text('Error');
         },
