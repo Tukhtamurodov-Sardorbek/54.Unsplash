@@ -20,25 +20,8 @@ class ServerError implements Exception{
     DioErrorType.connectTimeout.name: 'Connection timeout',
     DioErrorType.receiveTimeout.name: 'Connection timeout',
     DioErrorType.sendTimeout.name: 'Connection timeout',
-    DioErrorType.other.name: 'Something wrong',
+    DioErrorType.other.name: 'Something went wrong...',
   };
-
-  static String userFriendlyError(String? error){
-    String _userFriendlyError = '';
-
-    if(error != null){
-      if(_userFriendlyErrors.containsKey(error)){
-        _userFriendlyError = _userFriendlyErrors[error]!;
-      } else{
-        _userFriendlyError = error;
-      }
-    } else {
-      _userFriendlyError = 'Something wrong';
-    }
-
-    return _userFriendlyError;
-  }
-
 
   ServerError.withError(DioError error){
     _statusCode = error.response?.statusCode ?? 500;
@@ -50,6 +33,22 @@ class ServerError implements Exception{
     } else{
       _errorMessage = DioErrorType.other.name;
     }
+  }
+
+  static String userFriendlyError(String? error){
+    String _userFriendlyError = '';
+
+    if(error != null){
+      if(_userFriendlyErrors.containsKey(error)){
+        _userFriendlyError = _userFriendlyErrors[error]!;
+      } else{
+        _userFriendlyError = error;
+      }
+    } else {
+      _userFriendlyError = 'Something went wrong...';
+    }
+
+    return _userFriendlyError;
   }
 
   static String _statusCodes(int statusCode, dynamic error){

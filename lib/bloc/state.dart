@@ -16,4 +16,7 @@ class LoadedState extends PostState {
   const LoadedState({required this.posts});
 }
 
-class ErrorState extends PostState {}
+class ErrorState extends PostState {
+  final String errorMessage;
+  const ErrorState({required this.errorMessage});
+}

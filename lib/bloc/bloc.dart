@@ -13,11 +13,11 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     on<PostEvent>((event, emit) async {
       if (event is LoadEvent) {
         emit(LoadingState());
-        List<Photo>? posts = await photoRepository.getPhotos();
-        if (posts == null) {
-          emit(ErrorState());
-        } else {
-          emit(LoadedState(posts: posts));
+        final result = await photoRepository.getPhotos();
+        if (result is String) {
+          emit(ErrorState(errorMessage: result));
+        } else{
+          emit(LoadedState(posts: result));
         }
       }
     });
