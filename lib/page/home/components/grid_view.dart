@@ -6,6 +6,7 @@ import 'package:unsplash/data/model/photo.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:unsplash/page/home/components/extension.dart';
 
 class PostsView extends StatelessWidget {
   final List<Photo> posts;
@@ -126,6 +127,14 @@ class Post extends StatelessWidget {
           ),
         ],
       ),
+    ).onTap(
+        (){
+          print('********** PRESSED **********');
+          print('********** ${photo.urls.full}');
+          print('********** ${photo.links.download}');
+          print('$photo');
+          print('******************************');
+        }
     );
   }
 }
