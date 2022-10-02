@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unsplash/bloc/bloc.dart';
@@ -12,8 +13,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<PostBloc, PostState>(
         builder: (context, state) {
-          if (state is InitialState || state is LoadingState) {
+          if (state is InitialState) {
             context.read<PostBloc>().add(LoadEvent());
+            return const Center(child: CupertinoActivityIndicator());
+          } else if (state is LoadingState) {
             return const Loader();
           } else if (state is LoadedState) {
             return PostsView(posts: state.posts);
