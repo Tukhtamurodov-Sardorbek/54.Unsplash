@@ -18,6 +18,7 @@ void main() {
       systemNavigationBarColor: Colors.black,
     ),
   );
+  
   // * To hide both navigation and status bars
   SystemChrome.setEnabledSystemUIOverlays([]);
 
