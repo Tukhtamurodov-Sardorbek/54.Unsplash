@@ -16,8 +16,8 @@ dependencies:
 
   # For State Management
   flutter_bloc: ^8.1.1
-  # For navigation handling
-  auto_route: ^5.0.1
+  # For Navigation Management
+  go_router: ^5.0.5
   # For api calls
   dio: ^4.0.6
   # For fromJson & toJson
@@ -35,8 +35,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.0
-  # For auto-route package
-  auto_route_generator: ^5.0.2
+
   # To generate custom classes
   build_runner: ^2.2.1
   # To compare objects

@@ -1,14 +1,27 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:unsplash/page/home/home.dart';
-import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-part 'router.gr.dart';
+enum Pages{
+  HOME,
+  ERROR,
+}
 
-@MaterialAutoRouter(
-  replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
-    AutoRoute(page: HomePage, initial: true),
-  ],
-)
+class AppRouter {
+  static Map<String, String> appPages = {
+    Pages.HOME.name : '/',
+  };
 
-class AppRouter extends _$AppRouter {}
+  static GoRouter appRouter(){
+    return GoRouter(
+      routes: <GoRoute>[
+        GoRoute(
+          path: appPages[Pages.HOME.name]!,
+          builder: (BuildContext context, GoRouterState state) {
+            return const HomePage();
+          }
+        )
+      ]
+    );
+  }
+}

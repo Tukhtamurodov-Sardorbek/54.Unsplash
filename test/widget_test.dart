@@ -39,10 +39,4 @@ void main() {
       expect(data.length, greaterThan(0));
     }
   });
-
-
-  test('Route List', () async {
-    final router = AppRouter();
-    expect(router.routes.isNotEmpty, true);
-  });
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unsplash/bloc/bloc.dart';
 import 'package:unsplash/route/router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unsplash/data/repository/photo_repository.dart';
 
 void main() {
@@ -40,12 +40,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Unsplash Posts',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
       ),
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerConfig: AppRouter.appRouter(),
 
       // * To remove the glow on the whole application
       builder: (context, child) {
