@@ -25,14 +25,13 @@ void main() {
   runApp(
     BlocProvider<PostBloc>(
       create: (context) => PostBloc(PhotoRepository()),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  final _appRouter = AppRouter();
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
