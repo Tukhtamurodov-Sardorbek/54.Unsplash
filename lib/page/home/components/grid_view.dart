@@ -130,9 +130,9 @@ class Post extends StatelessWidget {
     ).onTap(
         (){
           print('********** PRESSED **********');
-          print('********** ${photo.urls.full}');
-          print('********** ${photo.links.download}');
-          print('$photo');
+          print('* ${photo.urls.full} *');
+          print('* ${photo.links.download} *');
+          print('* $photo *');
           print('******************************');
         }
     );
@@ -214,8 +214,6 @@ class FailedToLoad extends StatelessWidget {
     return Center(
       child: Lottie.asset(
         'assets/animations/lottie_nodata.json',
-        // height: 150,
-        // width: double.infinity,
         fit: BoxFit.cover,
       ),
     );
