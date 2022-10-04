@@ -18,10 +18,12 @@ dependencies:
   flutter_bloc: ^8.1.1
   # For Navigation Management
   go_router: ^5.0.5
-  # For api calls
+  # For Network Calls
   dio: ^4.0.6
-  # For fromJson & toJson
+  # For Conversion from/to Json to/from Object
   json_annotation: ^4.7.0
+  # To compare objects
+  equatable: ^2.0.5
   # For UI
   flutter_staggered_grid_view: ^0.6.2
   cached_network_image: ^3.2.2
@@ -38,8 +40,6 @@ dev_dependencies:
 
   # To generate custom classes
   build_runner: ^2.2.1
-  # To compare objects
-  equatable: ^2.0.5
   # To generate data classes
   freezed: ^2.1.0+1
   # For generation of data classes
