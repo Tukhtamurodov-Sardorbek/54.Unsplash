@@ -68,7 +68,7 @@ class Post extends StatelessWidget {
             fit: FlexFit.loose,
             child: CachedNetworkImage(
               fit: BoxFit.cover,
-              imageUrl: photo.urls.full ?? '',
+              imageUrl: photo.urls.small ?? '',
               imageBuilder: (BuildContext context, ImageProvider imageProvider) {
                 return ClipRRect(
                   borderRadius: const BorderRadius.vertical(top: Radius.circular(6)),
