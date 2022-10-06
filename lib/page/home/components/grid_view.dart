@@ -19,7 +19,7 @@ class PostsView extends StatelessWidget {
       interactive: true,
 
       child: MasonryGridView.count(
-        padding: const EdgeInsets.fromLTRB(4.0, 0.0, 6.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
         physics: const ClampingScrollPhysics(),
         crossAxisCount: 2,
         mainAxisSpacing: 4,

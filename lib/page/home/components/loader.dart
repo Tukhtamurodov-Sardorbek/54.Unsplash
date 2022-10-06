@@ -10,25 +10,43 @@ class Loader extends StatelessWidget {
       body: Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
           children: [
-            Lottie.asset(
-              'assets/animations/lottie_loading.json',
-              height: 150,
-              width: double.infinity,
-              fit: BoxFit.cover,
+            Center(
+              child: Lottie.asset(
+                'assets/animations/lottie_circular_dots.json',
+                fit: BoxFit.contain,
+              ),
             ),
-            const SizedBox(height: 30),
-            Lottie.asset(
-              'assets/animations/lottie_clock.json',
-              height: 120,
-              width: 120,
-              fit: BoxFit.cover,
+            Center(
+              child: Lottie.asset(
+                'assets/animations/lottie_cube.json',
+                height: 160,
+                width: 160,
+                fit: BoxFit.cover,
+              ),
             ),
           ],
         ),
+        // child: Column(
+        //   mainAxisSize: MainAxisSize.min,
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     Lottie.asset(
+        //       'assets/animations/lottie_loading.json',
+        //       height: 150,
+        //       width: double.infinity,
+        //       fit: BoxFit.cover,
+        //     ),
+        //     const SizedBox(height: 30),
+        //     Lottie.asset(
+        //       'assets/animations/lottie_clock.json',
+        //       height: 120,
+        //       width: 120,
+        //       fit: BoxFit.cover,
+        //     ),
+        //   ],
+        // ),
       ),
     );
   }
