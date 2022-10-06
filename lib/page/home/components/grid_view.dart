@@ -95,7 +95,7 @@ class Post extends StatelessWidget {
           ClipRRect(
             borderRadius: const BorderRadius.vertical(bottom: Radius.circular(6)),
             child: GlassmorphicContainer(
-              height: 50,
+              height: 45,
               width: double.infinity,
               border: 0,
               borderRadius: 0,
@@ -184,23 +184,25 @@ class UserTile extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 6.0),
-        // Text(
-        //   photo.user.username ?? '',
-        //   textAlign: TextAlign.center,
-        //   maxLines: 1,
-        //   overflow: TextOverflow.ellipsis,
-        // ),
-        Expanded(
-          child: Marquee(
-            showFadingOnlyWhenScrolling: false,
-            text: photo.user.username ?? '',
-            style: const TextStyle(fontWeight: FontWeight.bold),
-            blankSpace: 20.0,
-            startPadding: 10.0,
-            velocity: 30.0,
-            startAfter: const Duration(seconds: 3),
+        Flexible(
+          child: Text(
+            photo.user.username ?? '',
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
-        )
+        ),
+        // Expanded(
+        //   child: Marquee(
+        //     showFadingOnlyWhenScrolling: false,
+        //     text: photo.user.username ?? '',
+        //     style: const TextStyle(fontWeight: FontWeight.bold),
+        //     blankSpace: 20.0,
+        //     startPadding: 10.0,
+        //     velocity: 30.0,
+        //     startAfter: const Duration(seconds: 3),
+        //   ),
+        // )
       ],
     );
   }
