@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:unsplash/page/home/home.dart';
 import 'package:go_router/go_router.dart';
 
@@ -21,7 +22,13 @@ class AppRouter {
             return const HomePage();
           }
         )
-      ]
+      ],
+      errorPageBuilder: (BuildContext context, GoRouterState state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: Scaffold(body: Center(child: Text(state.error.toString()))),
+        );
+      },
     );
   }
 }

@@ -18,12 +18,16 @@ class PostsView extends StatelessWidget {
       thickness: 5,
       interactive: true,
 
-      child: MasonryGridView.count(
+      child: MasonryGridView.builder(
         padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
         physics: const ClampingScrollPhysics(),
-        crossAxisCount: 2,
+
         mainAxisSpacing: 4,
         crossAxisSpacing: 4,
+        gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+        ),
+
         itemCount: posts.length,
         itemBuilder: (context, index) {
           final Photo photo = posts[index];

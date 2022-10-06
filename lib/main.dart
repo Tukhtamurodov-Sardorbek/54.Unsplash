@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:unsplash/bloc/bloc.dart';
@@ -5,11 +8,11 @@ import 'package:unsplash/route/router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unsplash/data/repository/photo_repository.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
   // * Orientation
-  // await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   // * StatusBar & NavigationBar Colors
   SystemChrome.setSystemUIOverlayStyle(
@@ -18,16 +21,33 @@ void main() {
       systemNavigationBarColor: Colors.black,
     ),
   );
-  
+
   // * To hide both navigation and status bars
   SystemChrome.setEnabledSystemUIOverlays([]);
 
-  runApp(
-    BlocProvider<PostBloc>(
-      create: (context) => PostBloc(PhotoRepository()),
-      child: const MyApp(),
-    ),
+  runZonedGuarded<Future<void>>(
+    () async {
+      runApp(
+        BlocProvider<PostBloc>(
+          create: (context) => PostBloc(PhotoRepository()),
+          child: const MyApp(),
+        ),
+      );
+    },
+    (error, stack) {
+      print('#########################################################');
+      print('ERROR: $error');
+      print('\nStackTrace: $stack');
+      print('#########################################################');
+    },
   );
+  FlutterError.onError = (FlutterErrorDetails details) async {
+    if (kDebugMode) {
+      FlutterError.dumpErrorToConsole(details);
+    } else {
+      Zone.current.handleUncaughtError(details.exception, details.stack!);
+    }
+  };
 }
 
 class MyApp extends StatelessWidget {
@@ -42,6 +62,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
       ),
+
       routerConfig: AppRouter.appRouter(),
 
       // * To remove the glow on the whole application
@@ -57,7 +78,8 @@ class MyApp extends StatelessWidget {
 
 class NoGlowBehavior extends ScrollBehavior {
   @override
-  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details) {
     return child;
   }
 }
