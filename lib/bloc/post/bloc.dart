@@ -20,7 +20,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
   FutureOr<void> _onLoadEvent(LoadEvent event, Emitter<PostState> emit) async{
     emit(LoadingState());
-    final result = await photoRepository.getPosts(page: 0);
+    final result = await photoRepository.getPosts(page: 1);
     if (result is String) {
       await Future.delayed(const Duration(seconds: 6));
       emit(ErrorState(errorMessage: result));
@@ -34,28 +34,26 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
   FutureOr<void> _onLoadMoreEvent(LoadMoreEvent event, Emitter<PostState> emit) async{
     int page = LocalDatabase.getPage() + 1;
-    emit(LoadingState());
+    print('PAGE: ${LocalDatabase.getPage()} => $page');
     final result = await photoRepository.getPosts(page: page);
-    await Future.delayed(const Duration(seconds: 6));
     if (result is String) {
       emit(ErrorState(errorMessage: result));
     } else{
-      await LocalDatabase.addPage(page);
+      await LocalDatabase.setPage(page);
       await LocalDatabase.addPosts(posts: result);
       final posts = LocalDatabase.getPosts().values.toList();
-      await Future.delayed(const Duration(seconds: 6));
       emit(LoadedState(posts: posts));
     }
   }
 
   FutureOr<void> _onClearEvent(ClearEvent event, Emitter<PostState> emit) async{
     emit(LoadingState());
-    final result = await photoRepository.getPosts(page: 0);
+    final result = await photoRepository.getPosts(page: 1);
     await Future.delayed(const Duration(seconds: 6));
     if (result is String) {
       emit(ErrorState(errorMessage: result));
     } else{
-      await LocalDatabase.addPage(0);
+      await LocalDatabase.setPage(1);
       await LocalDatabase.removePosts();
       await LocalDatabase.addPosts(posts: result);
       final posts = LocalDatabase.getPosts().values.toList();
