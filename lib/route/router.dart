@@ -1,16 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:unsplash/page/detail/detail.dart';
 import 'package:unsplash/page/home/home.dart';
 import 'package:go_router/go_router.dart';
 
 enum Pages{
   HOME,
-  ERROR,
+  DETAIL,
 }
 
 class AppRouter {
   static Map<String, String> appPages = {
     Pages.HOME.name : '/',
+    Pages.DETAIL.name : ':detail',
   };
 
   static GoRouter appRouter(){
@@ -20,7 +21,15 @@ class AppRouter {
           path: appPages[Pages.HOME.name]!,
           builder: (BuildContext context, GoRouterState state) {
             return const HomePage();
-          }
+          },
+          routes: <GoRoute>[
+            GoRoute(
+              path: appPages[Pages.DETAIL.name]!,
+              builder: (BuildContext context, GoRouterState state) {
+                return const DetailPage();
+              },
+            )
+          ]
         )
       ],
       errorPageBuilder: (BuildContext context, GoRouterState state) {
