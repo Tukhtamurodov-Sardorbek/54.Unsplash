@@ -12,7 +12,7 @@ class InitialState extends PostState {}
 class LoadingState extends PostState {}
 
 class LoadedState extends PostState {
-  final List<Photo> posts;
+  final List<LocalPost> posts;
   const LoadedState({required this.posts});
 }
 

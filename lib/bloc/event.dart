@@ -8,3 +8,7 @@ abstract class PostEvent extends Equatable {
 }
 
 class LoadEvent extends PostEvent {}
+
+class LoadMoreEvent extends PostEvent {}
+
+class ClearEvent extends PostEvent {}
