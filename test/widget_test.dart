@@ -31,7 +31,7 @@ void main() {
 
   test('Posts', () async {
     final photoRepository = PostRepository();
-    List<Post>? data = await photoRepository.getPosts(page: 0);
+    List<Post>? data = await photoRepository.getPosts(page: 1);
 
     if (data != null) {
       expect(data.length, greaterThan(0));
