@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'photo.dart';
+part of 'post.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,16 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Photo _$PhotoFromJson(Map<String, dynamic> json) {
-  return _Photo.fromJson(json);
+Post _$PostFromJson(Map<String, dynamic> json) {
+  return _Post.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Photo {
+mixin _$Post {
   String? get id => throw _privateConstructorUsedError;
-  String? get created_at => throw _privateConstructorUsedError;
-  String? get updated_at => throw _privateConstructorUsedError;
-  String? get promoted_at => throw _privateConstructorUsedError;
   double? get width => throw _privateConstructorUsedError;
   double? get height => throw _privateConstructorUsedError;
   String? get color => throw _privateConstructorUsedError;
@@ -38,18 +35,15 @@ mixin _$Photo {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PhotoCopyWith<Photo> get copyWith => throw _privateConstructorUsedError;
+  $PostCopyWith<Post> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PhotoCopyWith<$Res> {
-  factory $PhotoCopyWith(Photo value, $Res Function(Photo) then) =
-      _$PhotoCopyWithImpl<$Res>;
+abstract class $PostCopyWith<$Res> {
+  factory $PostCopyWith(Post value, $Res Function(Post) then) =
+      _$PostCopyWithImpl<$Res>;
   $Res call(
       {String? id,
-      String? created_at,
-      String? updated_at,
-      String? promoted_at,
       double? width,
       double? height,
       String? color,
@@ -68,19 +62,16 @@ abstract class $PhotoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PhotoCopyWithImpl<$Res> implements $PhotoCopyWith<$Res> {
-  _$PhotoCopyWithImpl(this._value, this._then);
+class _$PostCopyWithImpl<$Res> implements $PostCopyWith<$Res> {
+  _$PostCopyWithImpl(this._value, this._then);
 
-  final Photo _value;
+  final Post _value;
   // ignore: unused_field
-  final $Res Function(Photo) _then;
+  final $Res Function(Post) _then;
 
   @override
   $Res call({
     Object? id = freezed,
-    Object? created_at = freezed,
-    Object? updated_at = freezed,
-    Object? promoted_at = freezed,
     Object? width = freezed,
     Object? height = freezed,
     Object? color = freezed,
@@ -97,18 +88,6 @@ class _$PhotoCopyWithImpl<$Res> implements $PhotoCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      created_at: created_at == freezed
-          ? _value.created_at
-          : created_at // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updated_at: updated_at == freezed
-          ? _value.updated_at
-          : updated_at // ignore: cast_nullable_to_non_nullable
-              as String?,
-      promoted_at: promoted_at == freezed
-          ? _value.promoted_at
-          : promoted_at // ignore: cast_nullable_to_non_nullable
               as String?,
       width: width == freezed
           ? _value.width
@@ -180,15 +159,12 @@ class _$PhotoCopyWithImpl<$Res> implements $PhotoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_PhotoCopyWith<$Res> implements $PhotoCopyWith<$Res> {
-  factory _$$_PhotoCopyWith(_$_Photo value, $Res Function(_$_Photo) then) =
-      __$$_PhotoCopyWithImpl<$Res>;
+abstract class _$$_PostCopyWith<$Res> implements $PostCopyWith<$Res> {
+  factory _$$_PostCopyWith(_$_Post value, $Res Function(_$_Post) then) =
+      __$$_PostCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? id,
-      String? created_at,
-      String? updated_at,
-      String? promoted_at,
       double? width,
       double? height,
       String? color,
@@ -210,20 +186,17 @@ abstract class _$$_PhotoCopyWith<$Res> implements $PhotoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res>
-    implements _$$_PhotoCopyWith<$Res> {
-  __$$_PhotoCopyWithImpl(_$_Photo _value, $Res Function(_$_Photo) _then)
-      : super(_value, (v) => _then(v as _$_Photo));
+class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
+    implements _$$_PostCopyWith<$Res> {
+  __$$_PostCopyWithImpl(_$_Post _value, $Res Function(_$_Post) _then)
+      : super(_value, (v) => _then(v as _$_Post));
 
   @override
-  _$_Photo get _value => super._value as _$_Photo;
+  _$_Post get _value => super._value as _$_Post;
 
   @override
   $Res call({
     Object? id = freezed,
-    Object? created_at = freezed,
-    Object? updated_at = freezed,
-    Object? promoted_at = freezed,
     Object? width = freezed,
     Object? height = freezed,
     Object? color = freezed,
@@ -236,22 +209,10 @@ class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res>
     Object? liked_by_user = freezed,
     Object? user = freezed,
   }) {
-    return _then(_$_Photo(
+    return _then(_$_Post(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      created_at: created_at == freezed
-          ? _value.created_at
-          : created_at // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updated_at: updated_at == freezed
-          ? _value.updated_at
-          : updated_at // ignore: cast_nullable_to_non_nullable
-              as String?,
-      promoted_at: promoted_at == freezed
-          ? _value.promoted_at
-          : promoted_at // ignore: cast_nullable_to_non_nullable
               as String?,
       width: width == freezed
           ? _value.width
@@ -303,12 +264,9 @@ class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Photo implements _Photo {
-  _$_Photo(
+class _$_Post implements _Post {
+  _$_Post(
       {required this.id,
-      required this.created_at,
-      required this.updated_at,
-      required this.promoted_at,
       required this.width,
       required this.height,
       required this.color,
@@ -321,17 +279,10 @@ class _$_Photo implements _Photo {
       required this.liked_by_user,
       required this.user});
 
-  factory _$_Photo.fromJson(Map<String, dynamic> json) =>
-      _$$_PhotoFromJson(json);
+  factory _$_Post.fromJson(Map<String, dynamic> json) => _$$_PostFromJson(json);
 
   @override
   final String? id;
-  @override
-  final String? created_at;
-  @override
-  final String? updated_at;
-  @override
-  final String? promoted_at;
   @override
   final double? width;
   @override
@@ -357,21 +308,15 @@ class _$_Photo implements _Photo {
 
   @override
   String toString() {
-    return 'Photo(id: $id, created_at: $created_at, updated_at: $updated_at, promoted_at: $promoted_at, width: $width, height: $height, color: $color, blur_hash: $blur_hash, description: $description, alt_description: $alt_description, urls: $urls, links: $links, likes: $likes, liked_by_user: $liked_by_user, user: $user)';
+    return 'Post(id: $id, width: $width, height: $height, color: $color, blur_hash: $blur_hash, description: $description, alt_description: $alt_description, urls: $urls, links: $links, likes: $likes, liked_by_user: $liked_by_user, user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Photo &&
+            other is _$_Post &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.created_at, created_at) &&
-            const DeepCollectionEquality()
-                .equals(other.updated_at, updated_at) &&
-            const DeepCollectionEquality()
-                .equals(other.promoted_at, promoted_at) &&
             const DeepCollectionEquality().equals(other.width, width) &&
             const DeepCollectionEquality().equals(other.height, height) &&
             const DeepCollectionEquality().equals(other.color, color) &&
@@ -393,9 +338,6 @@ class _$_Photo implements _Photo {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(created_at),
-      const DeepCollectionEquality().hash(updated_at),
-      const DeepCollectionEquality().hash(promoted_at),
       const DeepCollectionEquality().hash(width),
       const DeepCollectionEquality().hash(height),
       const DeepCollectionEquality().hash(color),
@@ -410,23 +352,20 @@ class _$_Photo implements _Photo {
 
   @JsonKey(ignore: true)
   @override
-  _$$_PhotoCopyWith<_$_Photo> get copyWith =>
-      __$$_PhotoCopyWithImpl<_$_Photo>(this, _$identity);
+  _$$_PostCopyWith<_$_Post> get copyWith =>
+      __$$_PostCopyWithImpl<_$_Post>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PhotoToJson(
+    return _$$_PostToJson(
       this,
     );
   }
 }
 
-abstract class _Photo implements Photo {
-  factory _Photo(
+abstract class _Post implements Post {
+  factory _Post(
       {required final String? id,
-      required final String? created_at,
-      required final String? updated_at,
-      required final String? promoted_at,
       required final double? width,
       required final double? height,
       required final String? color,
@@ -437,18 +376,12 @@ abstract class _Photo implements Photo {
       required final Links links,
       required final int? likes,
       required final bool? liked_by_user,
-      required final User user}) = _$_Photo;
+      required final User user}) = _$_Post;
 
-  factory _Photo.fromJson(Map<String, dynamic> json) = _$_Photo.fromJson;
+  factory _Post.fromJson(Map<String, dynamic> json) = _$_Post.fromJson;
 
   @override
   String? get id;
-  @override
-  String? get created_at;
-  @override
-  String? get updated_at;
-  @override
-  String? get promoted_at;
   @override
   double? get width;
   @override
@@ -473,8 +406,7 @@ abstract class _Photo implements Photo {
   User get user;
   @override
   @JsonKey(ignore: true)
-  _$$_PhotoCopyWith<_$_Photo> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_PostCopyWith<_$_Post> get copyWith => throw _privateConstructorUsedError;
 }
 
 Urls _$UrlsFromJson(Map<String, dynamic> json) {
@@ -483,12 +415,8 @@ Urls _$UrlsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Urls {
-  String? get raw => throw _privateConstructorUsedError;
   String? get full => throw _privateConstructorUsedError;
-  String? get regular => throw _privateConstructorUsedError;
   String? get small => throw _privateConstructorUsedError;
-  String? get thumb => throw _privateConstructorUsedError;
-  String? get small_s3 => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -499,13 +427,7 @@ mixin _$Urls {
 abstract class $UrlsCopyWith<$Res> {
   factory $UrlsCopyWith(Urls value, $Res Function(Urls) then) =
       _$UrlsCopyWithImpl<$Res>;
-  $Res call(
-      {String? raw,
-      String? full,
-      String? regular,
-      String? small,
-      String? thumb,
-      String? small_s3});
+  $Res call({String? full, String? small});
 }
 
 /// @nodoc
@@ -518,37 +440,17 @@ class _$UrlsCopyWithImpl<$Res> implements $UrlsCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? raw = freezed,
     Object? full = freezed,
-    Object? regular = freezed,
     Object? small = freezed,
-    Object? thumb = freezed,
-    Object? small_s3 = freezed,
   }) {
     return _then(_value.copyWith(
-      raw: raw == freezed
-          ? _value.raw
-          : raw // ignore: cast_nullable_to_non_nullable
-              as String?,
       full: full == freezed
           ? _value.full
           : full // ignore: cast_nullable_to_non_nullable
               as String?,
-      regular: regular == freezed
-          ? _value.regular
-          : regular // ignore: cast_nullable_to_non_nullable
-              as String?,
       small: small == freezed
           ? _value.small
           : small // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumb: thumb == freezed
-          ? _value.thumb
-          : thumb // ignore: cast_nullable_to_non_nullable
-              as String?,
-      small_s3: small_s3 == freezed
-          ? _value.small_s3
-          : small_s3 // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -559,13 +461,7 @@ abstract class _$$_UrlsCopyWith<$Res> implements $UrlsCopyWith<$Res> {
   factory _$$_UrlsCopyWith(_$_Urls value, $Res Function(_$_Urls) then) =
       __$$_UrlsCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String? raw,
-      String? full,
-      String? regular,
-      String? small,
-      String? thumb,
-      String? small_s3});
+  $Res call({String? full, String? small});
 }
 
 /// @nodoc
@@ -579,37 +475,17 @@ class __$$_UrlsCopyWithImpl<$Res> extends _$UrlsCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? raw = freezed,
     Object? full = freezed,
-    Object? regular = freezed,
     Object? small = freezed,
-    Object? thumb = freezed,
-    Object? small_s3 = freezed,
   }) {
     return _then(_$_Urls(
-      raw: raw == freezed
-          ? _value.raw
-          : raw // ignore: cast_nullable_to_non_nullable
-              as String?,
       full: full == freezed
           ? _value.full
           : full // ignore: cast_nullable_to_non_nullable
               as String?,
-      regular: regular == freezed
-          ? _value.regular
-          : regular // ignore: cast_nullable_to_non_nullable
-              as String?,
       small: small == freezed
           ? _value.small
           : small // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumb: thumb == freezed
-          ? _value.thumb
-          : thumb // ignore: cast_nullable_to_non_nullable
-              as String?,
-      small_s3: small_s3 == freezed
-          ? _value.small_s3
-          : small_s3 // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -618,32 +494,18 @@ class __$$_UrlsCopyWithImpl<$Res> extends _$UrlsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Urls implements _Urls {
-  _$_Urls(
-      {required this.raw,
-      required this.full,
-      required this.regular,
-      required this.small,
-      required this.thumb,
-      required this.small_s3});
+  _$_Urls({required this.full, required this.small});
 
   factory _$_Urls.fromJson(Map<String, dynamic> json) => _$$_UrlsFromJson(json);
 
   @override
-  final String? raw;
-  @override
   final String? full;
   @override
-  final String? regular;
-  @override
   final String? small;
-  @override
-  final String? thumb;
-  @override
-  final String? small_s3;
 
   @override
   String toString() {
-    return 'Urls(raw: $raw, full: $full, regular: $regular, small: $small, thumb: $thumb, small_s3: $small_s3)';
+    return 'Urls(full: $full, small: $small)';
   }
 
   @override
@@ -651,24 +513,16 @@ class _$_Urls implements _Urls {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Urls &&
-            const DeepCollectionEquality().equals(other.raw, raw) &&
             const DeepCollectionEquality().equals(other.full, full) &&
-            const DeepCollectionEquality().equals(other.regular, regular) &&
-            const DeepCollectionEquality().equals(other.small, small) &&
-            const DeepCollectionEquality().equals(other.thumb, thumb) &&
-            const DeepCollectionEquality().equals(other.small_s3, small_s3));
+            const DeepCollectionEquality().equals(other.small, small));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(raw),
       const DeepCollectionEquality().hash(full),
-      const DeepCollectionEquality().hash(regular),
-      const DeepCollectionEquality().hash(small),
-      const DeepCollectionEquality().hash(thumb),
-      const DeepCollectionEquality().hash(small_s3));
+      const DeepCollectionEquality().hash(small));
 
   @JsonKey(ignore: true)
   @override
@@ -684,28 +538,15 @@ class _$_Urls implements _Urls {
 }
 
 abstract class _Urls implements Urls {
-  factory _Urls(
-      {required final String? raw,
-      required final String? full,
-      required final String? regular,
-      required final String? small,
-      required final String? thumb,
-      required final String? small_s3}) = _$_Urls;
+  factory _Urls({required final String? full, required final String? small}) =
+      _$_Urls;
 
   factory _Urls.fromJson(Map<String, dynamic> json) = _$_Urls.fromJson;
 
   @override
-  String? get raw;
-  @override
   String? get full;
   @override
-  String? get regular;
-  @override
   String? get small;
-  @override
-  String? get thumb;
-  @override
-  String? get small_s3;
   @override
   @JsonKey(ignore: true)
   _$$_UrlsCopyWith<_$_Urls> get copyWith => throw _privateConstructorUsedError;
@@ -717,10 +558,7 @@ Links _$LinksFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Links {
-  String? get self => throw _privateConstructorUsedError;
-  String? get html => throw _privateConstructorUsedError;
   String? get download => throw _privateConstructorUsedError;
-  String? get download_location => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -731,11 +569,7 @@ mixin _$Links {
 abstract class $LinksCopyWith<$Res> {
   factory $LinksCopyWith(Links value, $Res Function(Links) then) =
       _$LinksCopyWithImpl<$Res>;
-  $Res call(
-      {String? self,
-      String? html,
-      String? download,
-      String? download_location});
+  $Res call({String? download});
 }
 
 /// @nodoc
@@ -748,27 +582,12 @@ class _$LinksCopyWithImpl<$Res> implements $LinksCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? self = freezed,
-    Object? html = freezed,
     Object? download = freezed,
-    Object? download_location = freezed,
   }) {
     return _then(_value.copyWith(
-      self: self == freezed
-          ? _value.self
-          : self // ignore: cast_nullable_to_non_nullable
-              as String?,
-      html: html == freezed
-          ? _value.html
-          : html // ignore: cast_nullable_to_non_nullable
-              as String?,
       download: download == freezed
           ? _value.download
           : download // ignore: cast_nullable_to_non_nullable
-              as String?,
-      download_location: download_location == freezed
-          ? _value.download_location
-          : download_location // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -779,11 +598,7 @@ abstract class _$$_LinksCopyWith<$Res> implements $LinksCopyWith<$Res> {
   factory _$$_LinksCopyWith(_$_Links value, $Res Function(_$_Links) then) =
       __$$_LinksCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String? self,
-      String? html,
-      String? download,
-      String? download_location});
+  $Res call({String? download});
 }
 
 /// @nodoc
@@ -797,27 +612,12 @@ class __$$_LinksCopyWithImpl<$Res> extends _$LinksCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? self = freezed,
-    Object? html = freezed,
     Object? download = freezed,
-    Object? download_location = freezed,
   }) {
     return _then(_$_Links(
-      self: self == freezed
-          ? _value.self
-          : self // ignore: cast_nullable_to_non_nullable
-              as String?,
-      html: html == freezed
-          ? _value.html
-          : html // ignore: cast_nullable_to_non_nullable
-              as String?,
       download: download == freezed
           ? _value.download
           : download // ignore: cast_nullable_to_non_nullable
-              as String?,
-      download_location: download_location == freezed
-          ? _value.download_location
-          : download_location // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -826,27 +626,17 @@ class __$$_LinksCopyWithImpl<$Res> extends _$LinksCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Links implements _Links {
-  _$_Links(
-      {required this.self,
-      required this.html,
-      required this.download,
-      required this.download_location});
+  _$_Links({required this.download});
 
   factory _$_Links.fromJson(Map<String, dynamic> json) =>
       _$$_LinksFromJson(json);
 
   @override
-  final String? self;
-  @override
-  final String? html;
-  @override
   final String? download;
-  @override
-  final String? download_location;
 
   @override
   String toString() {
-    return 'Links(self: $self, html: $html, download: $download, download_location: $download_location)';
+    return 'Links(download: $download)';
   }
 
   @override
@@ -854,21 +644,13 @@ class _$_Links implements _Links {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Links &&
-            const DeepCollectionEquality().equals(other.self, self) &&
-            const DeepCollectionEquality().equals(other.html, html) &&
-            const DeepCollectionEquality().equals(other.download, download) &&
-            const DeepCollectionEquality()
-                .equals(other.download_location, download_location));
+            const DeepCollectionEquality().equals(other.download, download));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(self),
-      const DeepCollectionEquality().hash(html),
-      const DeepCollectionEquality().hash(download),
-      const DeepCollectionEquality().hash(download_location));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(download));
 
   @JsonKey(ignore: true)
   @override
@@ -884,22 +666,12 @@ class _$_Links implements _Links {
 }
 
 abstract class _Links implements Links {
-  factory _Links(
-      {required final String? self,
-      required final String? html,
-      required final String? download,
-      required final String? download_location}) = _$_Links;
+  factory _Links({required final String? download}) = _$_Links;
 
   factory _Links.fromJson(Map<String, dynamic> json) = _$_Links.fromJson;
 
   @override
-  String? get self;
-  @override
-  String? get html;
-  @override
   String? get download;
-  @override
-  String? get download_location;
   @override
   @JsonKey(ignore: true)
   _$$_LinksCopyWith<_$_Links> get copyWith =>
@@ -917,8 +689,6 @@ mixin _$User {
   String? get name => throw _privateConstructorUsedError;
   String? get first_name => throw _privateConstructorUsedError;
   String? get last_name => throw _privateConstructorUsedError;
-  String? get location => throw _privateConstructorUsedError;
-  UserLinks get links => throw _privateConstructorUsedError;
   UserProfileImage get profile_image => throw _privateConstructorUsedError;
   int? get total_photos => throw _privateConstructorUsedError;
   int? get total_likes => throw _privateConstructorUsedError;
@@ -939,14 +709,11 @@ abstract class $UserCopyWith<$Res> {
       String? name,
       String? first_name,
       String? last_name,
-      String? location,
-      UserLinks links,
       UserProfileImage profile_image,
       int? total_photos,
       int? total_likes,
       UserSocialMediaProfiles social});
 
-  $UserLinksCopyWith<$Res> get links;
   $UserProfileImageCopyWith<$Res> get profile_image;
   $UserSocialMediaProfilesCopyWith<$Res> get social;
 }
@@ -966,8 +733,6 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? name = freezed,
     Object? first_name = freezed,
     Object? last_name = freezed,
-    Object? location = freezed,
-    Object? links = freezed,
     Object? profile_image = freezed,
     Object? total_photos = freezed,
     Object? total_likes = freezed,
@@ -994,14 +759,6 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.last_name
           : last_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      location: location == freezed
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String?,
-      links: links == freezed
-          ? _value.links
-          : links // ignore: cast_nullable_to_non_nullable
-              as UserLinks,
       profile_image: profile_image == freezed
           ? _value.profile_image
           : profile_image // ignore: cast_nullable_to_non_nullable
@@ -1019,13 +776,6 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           : social // ignore: cast_nullable_to_non_nullable
               as UserSocialMediaProfiles,
     ));
-  }
-
-  @override
-  $UserLinksCopyWith<$Res> get links {
-    return $UserLinksCopyWith<$Res>(_value.links, (value) {
-      return _then(_value.copyWith(links: value));
-    });
   }
 
   @override
@@ -1054,15 +804,11 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String? name,
       String? first_name,
       String? last_name,
-      String? location,
-      UserLinks links,
       UserProfileImage profile_image,
       int? total_photos,
       int? total_likes,
       UserSocialMediaProfiles social});
 
-  @override
-  $UserLinksCopyWith<$Res> get links;
   @override
   $UserProfileImageCopyWith<$Res> get profile_image;
   @override
@@ -1085,8 +831,6 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? name = freezed,
     Object? first_name = freezed,
     Object? last_name = freezed,
-    Object? location = freezed,
-    Object? links = freezed,
     Object? profile_image = freezed,
     Object? total_photos = freezed,
     Object? total_likes = freezed,
@@ -1113,14 +857,6 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.last_name
           : last_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      location: location == freezed
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String?,
-      links: links == freezed
-          ? _value.links
-          : links // ignore: cast_nullable_to_non_nullable
-              as UserLinks,
       profile_image: profile_image == freezed
           ? _value.profile_image
           : profile_image // ignore: cast_nullable_to_non_nullable
@@ -1150,8 +886,6 @@ class _$_User implements _User {
       required this.name,
       required this.first_name,
       required this.last_name,
-      required this.location,
-      required this.links,
       required this.profile_image,
       required this.total_photos,
       required this.total_likes,
@@ -1170,10 +904,6 @@ class _$_User implements _User {
   @override
   final String? last_name;
   @override
-  final String? location;
-  @override
-  final UserLinks links;
-  @override
   final UserProfileImage profile_image;
   @override
   final int? total_photos;
@@ -1184,7 +914,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, name: $name, first_name: $first_name, last_name: $last_name, location: $location, links: $links, profile_image: $profile_image, total_photos: $total_photos, total_likes: $total_likes, social: $social)';
+    return 'User(id: $id, username: $username, name: $name, first_name: $first_name, last_name: $last_name, profile_image: $profile_image, total_photos: $total_photos, total_likes: $total_likes, social: $social)';
   }
 
   @override
@@ -1198,8 +928,6 @@ class _$_User implements _User {
             const DeepCollectionEquality()
                 .equals(other.first_name, first_name) &&
             const DeepCollectionEquality().equals(other.last_name, last_name) &&
-            const DeepCollectionEquality().equals(other.location, location) &&
-            const DeepCollectionEquality().equals(other.links, links) &&
             const DeepCollectionEquality()
                 .equals(other.profile_image, profile_image) &&
             const DeepCollectionEquality()
@@ -1218,8 +946,6 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(first_name),
       const DeepCollectionEquality().hash(last_name),
-      const DeepCollectionEquality().hash(location),
-      const DeepCollectionEquality().hash(links),
       const DeepCollectionEquality().hash(profile_image),
       const DeepCollectionEquality().hash(total_photos),
       const DeepCollectionEquality().hash(total_likes),
@@ -1245,8 +971,6 @@ abstract class _User implements User {
       required final String? name,
       required final String? first_name,
       required final String? last_name,
-      required final String? location,
-      required final UserLinks links,
       required final UserProfileImage profile_image,
       required final int? total_photos,
       required final int? total_likes,
@@ -1265,10 +989,6 @@ abstract class _User implements User {
   @override
   String? get last_name;
   @override
-  String? get location;
-  @override
-  UserLinks get links;
-  @override
   UserProfileImage get profile_image;
   @override
   int? get total_photos;
@@ -1279,267 +999,6 @@ abstract class _User implements User {
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
-}
-
-UserLinks _$UserLinksFromJson(Map<String, dynamic> json) {
-  return _UserLinks.fromJson(json);
-}
-
-/// @nodoc
-mixin _$UserLinks {
-  String? get self => throw _privateConstructorUsedError;
-  String? get html => throw _privateConstructorUsedError;
-  String? get photos => throw _privateConstructorUsedError;
-  String? get likes => throw _privateConstructorUsedError;
-  String? get portfolio => throw _privateConstructorUsedError;
-  String? get following => throw _privateConstructorUsedError;
-  String? get followers => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $UserLinksCopyWith<UserLinks> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UserLinksCopyWith<$Res> {
-  factory $UserLinksCopyWith(UserLinks value, $Res Function(UserLinks) then) =
-      _$UserLinksCopyWithImpl<$Res>;
-  $Res call(
-      {String? self,
-      String? html,
-      String? photos,
-      String? likes,
-      String? portfolio,
-      String? following,
-      String? followers});
-}
-
-/// @nodoc
-class _$UserLinksCopyWithImpl<$Res> implements $UserLinksCopyWith<$Res> {
-  _$UserLinksCopyWithImpl(this._value, this._then);
-
-  final UserLinks _value;
-  // ignore: unused_field
-  final $Res Function(UserLinks) _then;
-
-  @override
-  $Res call({
-    Object? self = freezed,
-    Object? html = freezed,
-    Object? photos = freezed,
-    Object? likes = freezed,
-    Object? portfolio = freezed,
-    Object? following = freezed,
-    Object? followers = freezed,
-  }) {
-    return _then(_value.copyWith(
-      self: self == freezed
-          ? _value.self
-          : self // ignore: cast_nullable_to_non_nullable
-              as String?,
-      html: html == freezed
-          ? _value.html
-          : html // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photos: photos == freezed
-          ? _value.photos
-          : photos // ignore: cast_nullable_to_non_nullable
-              as String?,
-      likes: likes == freezed
-          ? _value.likes
-          : likes // ignore: cast_nullable_to_non_nullable
-              as String?,
-      portfolio: portfolio == freezed
-          ? _value.portfolio
-          : portfolio // ignore: cast_nullable_to_non_nullable
-              as String?,
-      following: following == freezed
-          ? _value.following
-          : following // ignore: cast_nullable_to_non_nullable
-              as String?,
-      followers: followers == freezed
-          ? _value.followers
-          : followers // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$$_UserLinksCopyWith<$Res> implements $UserLinksCopyWith<$Res> {
-  factory _$$_UserLinksCopyWith(
-          _$_UserLinks value, $Res Function(_$_UserLinks) then) =
-      __$$_UserLinksCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {String? self,
-      String? html,
-      String? photos,
-      String? likes,
-      String? portfolio,
-      String? following,
-      String? followers});
-}
-
-/// @nodoc
-class __$$_UserLinksCopyWithImpl<$Res> extends _$UserLinksCopyWithImpl<$Res>
-    implements _$$_UserLinksCopyWith<$Res> {
-  __$$_UserLinksCopyWithImpl(
-      _$_UserLinks _value, $Res Function(_$_UserLinks) _then)
-      : super(_value, (v) => _then(v as _$_UserLinks));
-
-  @override
-  _$_UserLinks get _value => super._value as _$_UserLinks;
-
-  @override
-  $Res call({
-    Object? self = freezed,
-    Object? html = freezed,
-    Object? photos = freezed,
-    Object? likes = freezed,
-    Object? portfolio = freezed,
-    Object? following = freezed,
-    Object? followers = freezed,
-  }) {
-    return _then(_$_UserLinks(
-      self: self == freezed
-          ? _value.self
-          : self // ignore: cast_nullable_to_non_nullable
-              as String?,
-      html: html == freezed
-          ? _value.html
-          : html // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photos: photos == freezed
-          ? _value.photos
-          : photos // ignore: cast_nullable_to_non_nullable
-              as String?,
-      likes: likes == freezed
-          ? _value.likes
-          : likes // ignore: cast_nullable_to_non_nullable
-              as String?,
-      portfolio: portfolio == freezed
-          ? _value.portfolio
-          : portfolio // ignore: cast_nullable_to_non_nullable
-              as String?,
-      following: following == freezed
-          ? _value.following
-          : following // ignore: cast_nullable_to_non_nullable
-              as String?,
-      followers: followers == freezed
-          ? _value.followers
-          : followers // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_UserLinks implements _UserLinks {
-  _$_UserLinks(
-      {required this.self,
-      required this.html,
-      required this.photos,
-      required this.likes,
-      required this.portfolio,
-      required this.following,
-      required this.followers});
-
-  factory _$_UserLinks.fromJson(Map<String, dynamic> json) =>
-      _$$_UserLinksFromJson(json);
-
-  @override
-  final String? self;
-  @override
-  final String? html;
-  @override
-  final String? photos;
-  @override
-  final String? likes;
-  @override
-  final String? portfolio;
-  @override
-  final String? following;
-  @override
-  final String? followers;
-
-  @override
-  String toString() {
-    return 'UserLinks(self: $self, html: $html, photos: $photos, likes: $likes, portfolio: $portfolio, following: $following, followers: $followers)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_UserLinks &&
-            const DeepCollectionEquality().equals(other.self, self) &&
-            const DeepCollectionEquality().equals(other.html, html) &&
-            const DeepCollectionEquality().equals(other.photos, photos) &&
-            const DeepCollectionEquality().equals(other.likes, likes) &&
-            const DeepCollectionEquality().equals(other.portfolio, portfolio) &&
-            const DeepCollectionEquality().equals(other.following, following) &&
-            const DeepCollectionEquality().equals(other.followers, followers));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(self),
-      const DeepCollectionEquality().hash(html),
-      const DeepCollectionEquality().hash(photos),
-      const DeepCollectionEquality().hash(likes),
-      const DeepCollectionEquality().hash(portfolio),
-      const DeepCollectionEquality().hash(following),
-      const DeepCollectionEquality().hash(followers));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_UserLinksCopyWith<_$_UserLinks> get copyWith =>
-      __$$_UserLinksCopyWithImpl<_$_UserLinks>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_UserLinksToJson(
-      this,
-    );
-  }
-}
-
-abstract class _UserLinks implements UserLinks {
-  factory _UserLinks(
-      {required final String? self,
-      required final String? html,
-      required final String? photos,
-      required final String? likes,
-      required final String? portfolio,
-      required final String? following,
-      required final String? followers}) = _$_UserLinks;
-
-  factory _UserLinks.fromJson(Map<String, dynamic> json) =
-      _$_UserLinks.fromJson;
-
-  @override
-  String? get self;
-  @override
-  String? get html;
-  @override
-  String? get photos;
-  @override
-  String? get likes;
-  @override
-  String? get portfolio;
-  @override
-  String? get following;
-  @override
-  String? get followers;
-  @override
-  @JsonKey(ignore: true)
-  _$$_UserLinksCopyWith<_$_UserLinks> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 UserProfileImage _$UserProfileImageFromJson(Map<String, dynamic> json) {

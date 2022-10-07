@@ -1,16 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'photo.dart';
+part of 'post.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Photo _$$_PhotoFromJson(Map<String, dynamic> json) => _$_Photo(
+_$_Post _$$_PostFromJson(Map<String, dynamic> json) => _$_Post(
       id: json['id'] as String?,
-      created_at: json['created_at'] as String?,
-      updated_at: json['updated_at'] as String?,
-      promoted_at: json['promoted_at'] as String?,
       width: (json['width'] as num?)?.toDouble(),
       height: (json['height'] as num?)?.toDouble(),
       color: json['color'] as String?,
@@ -24,11 +21,8 @@ _$_Photo _$$_PhotoFromJson(Map<String, dynamic> json) => _$_Photo(
       user: User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_PhotoToJson(_$_Photo instance) => <String, dynamic>{
+Map<String, dynamic> _$$_PostToJson(_$_Post instance) => <String, dynamic>{
       'id': instance.id,
-      'created_at': instance.created_at,
-      'updated_at': instance.updated_at,
-      'promoted_at': instance.promoted_at,
       'width': instance.width,
       'height': instance.height,
       'color': instance.color,
@@ -43,35 +37,21 @@ Map<String, dynamic> _$$_PhotoToJson(_$_Photo instance) => <String, dynamic>{
     };
 
 _$_Urls _$$_UrlsFromJson(Map<String, dynamic> json) => _$_Urls(
-      raw: json['raw'] as String?,
       full: json['full'] as String?,
-      regular: json['regular'] as String?,
       small: json['small'] as String?,
-      thumb: json['thumb'] as String?,
-      small_s3: json['small_s3'] as String?,
     );
 
 Map<String, dynamic> _$$_UrlsToJson(_$_Urls instance) => <String, dynamic>{
-      'raw': instance.raw,
       'full': instance.full,
-      'regular': instance.regular,
       'small': instance.small,
-      'thumb': instance.thumb,
-      'small_s3': instance.small_s3,
     };
 
 _$_Links _$$_LinksFromJson(Map<String, dynamic> json) => _$_Links(
-      self: json['self'] as String?,
-      html: json['html'] as String?,
       download: json['download'] as String?,
-      download_location: json['download_location'] as String?,
     );
 
 Map<String, dynamic> _$$_LinksToJson(_$_Links instance) => <String, dynamic>{
-      'self': instance.self,
-      'html': instance.html,
       'download': instance.download,
-      'download_location': instance.download_location,
     };
 
 _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
@@ -80,8 +60,6 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       name: json['name'] as String?,
       first_name: json['first_name'] as String?,
       last_name: json['last_name'] as String?,
-      location: json['location'] as String?,
-      links: UserLinks.fromJson(json['links'] as Map<String, dynamic>),
       profile_image: UserProfileImage.fromJson(
           json['profile_image'] as Map<String, dynamic>),
       total_photos: json['total_photos'] as int?,
@@ -96,33 +74,10 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'name': instance.name,
       'first_name': instance.first_name,
       'last_name': instance.last_name,
-      'location': instance.location,
-      'links': instance.links,
       'profile_image': instance.profile_image,
       'total_photos': instance.total_photos,
       'total_likes': instance.total_likes,
       'social': instance.social,
-    };
-
-_$_UserLinks _$$_UserLinksFromJson(Map<String, dynamic> json) => _$_UserLinks(
-      self: json['self'] as String?,
-      html: json['html'] as String?,
-      photos: json['photos'] as String?,
-      likes: json['likes'] as String?,
-      portfolio: json['portfolio'] as String?,
-      following: json['following'] as String?,
-      followers: json['followers'] as String?,
-    );
-
-Map<String, dynamic> _$$_UserLinksToJson(_$_UserLinks instance) =>
-    <String, dynamic>{
-      'self': instance.self,
-      'html': instance.html,
-      'photos': instance.photos,
-      'likes': instance.likes,
-      'portfolio': instance.portfolio,
-      'following': instance.following,
-      'followers': instance.followers,
     };
 
 _$_UserProfileImage _$$_UserProfileImageFromJson(Map<String, dynamic> json) =>

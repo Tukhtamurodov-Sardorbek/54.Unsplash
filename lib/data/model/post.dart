@@ -1,14 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'photo.freezed.dart';
-part 'photo.g.dart';
+part 'post.freezed.dart';
+part 'post.g.dart';
 
 @freezed
-class Photo with _$Photo {
-  factory Photo({
+class Post with _$Post {
+  factory Post({
     required String? id,
-    required String? created_at,
-    required String? updated_at,
-    required String? promoted_at,
     required double? width,
     required double? height,
     required String? color,
@@ -20,21 +17,17 @@ class Photo with _$Photo {
     required int? likes,
     required bool? liked_by_user,
     required User user,
-  }) = _Photo;
+  }) = _Post;
 
-  factory Photo.fromJson(Map<String, dynamic> json) =>
-      _$PhotoFromJson(json);
+  factory Post.fromJson(Map<String, dynamic> json) =>
+      _$PostFromJson(json);
 }
 
 @freezed
 class Urls with _$Urls {
   factory Urls({
-    required String? raw,
     required String? full,
-    required String? regular,
     required String? small,
-    required String? thumb,
-    required String? small_s3,
   }) = _Urls;
 
   factory Urls.fromJson(Map<String, dynamic> json) =>
@@ -43,12 +36,7 @@ class Urls with _$Urls {
 
 @freezed
 class Links with _$Links {
-  factory Links({
-    required String? self,
-    required String? html,
-    required String? download,
-    required String? download_location,
-  }) = _Links;
+  factory Links({required String? download}) = _Links;
 
   factory Links.fromJson(Map<String, dynamic> json) =>
       _$LinksFromJson(json);
@@ -62,8 +50,6 @@ class User with _$User {
     required String? name,
     required String? first_name,
     required String? last_name,
-    required String? location,
-    required UserLinks links,
     required UserProfileImage profile_image,
     required int? total_photos,
     required int? total_likes,
@@ -74,21 +60,6 @@ class User with _$User {
       _$UserFromJson(json);
 }
 
-@freezed
-class UserLinks with _$UserLinks {
-  factory UserLinks({
-    required String? self,
-    required String? html,
-    required String? photos,
-    required String? likes,
-    required String? portfolio,
-    required String? following,
-    required String? followers,
-  }) = _UserLinks;
-
-  factory UserLinks.fromJson(Map<String, dynamic> json) =>
-      _$UserLinksFromJson(json);
-}
 
 @freezed
 class UserProfileImage with _$UserProfileImage {
