@@ -26,6 +26,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       emit(ErrorState(errorMessage: result));
     } else{
       await LocalDatabase.addPosts(posts: result);
+      /// TODO: In case there is no Internet
       final posts = LocalDatabase.getPosts().values.toList();
       await Future.delayed(const Duration(seconds: 6));
       emit(LoadedState(posts: posts));
@@ -49,7 +50,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
   FutureOr<void> _onClearEvent(ClearEvent event, Emitter<PostState> emit) async{
     emit(LoadingState());
     final result = await photoRepository.getPosts(page: 1);
-    await Future.delayed(const Duration(seconds: 6));
+    // await Future.delayed(const Duration(seconds: 3));
     if (result is String) {
       emit(ErrorState(errorMessage: result));
     } else{
@@ -57,7 +58,6 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       await LocalDatabase.removePosts();
       await LocalDatabase.addPosts(posts: result);
       final posts = LocalDatabase.getPosts().values.toList();
-      await Future.delayed(const Duration(seconds: 6));
       emit(LoadedState(posts: posts));
     }
   }
