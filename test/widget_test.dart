@@ -8,7 +8,7 @@
 import 'package:unsplash/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:unsplash/data/model/photo.dart';
+import 'package:unsplash/data/model/post.dart';
 import 'package:unsplash/data/repository/photo_repository.dart';
 
 void main() {
@@ -30,8 +30,8 @@ void main() {
   });
 
   test('Posts', () async {
-    final photoRepository = PhotoRepository();
-    List<Photo>? data = await photoRepository.getPhotos();
+    final photoRepository = PostRepository();
+    List<Post>? data = await photoRepository.getPosts(page: 0);
 
     if (data != null) {
       expect(data.length, greaterThan(0));
