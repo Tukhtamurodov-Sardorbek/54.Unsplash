@@ -23,11 +23,12 @@ class LocalDatabase{
   static Future<void> addPosts({required List<Post> posts}) async{
     final adaptedPostsID = getPosts().keys.toList();
     final adaptedPosts = getPosts().values.toList();
-    print('ADAPTED BEFORE: ${adaptedPosts.length}');
+    int addedPostsNumber = 0;
+    print('**** ADAPTED BEFORE: ${adaptedPosts.length} ****');
     for(var post in posts){
       bool isExist = adaptedPostsID.contains(post.id);
-      print('*** Is ${post.id} exist? $isExist ***');
       if(!isExist){
+        addedPostsNumber += 1;
         final p = LocalPost(
           postId: post.id,
           postWidth: post.width,
@@ -55,7 +56,8 @@ class LocalDatabase{
         adaptedPosts.add(p);
       }
     }
-    print('ADAPTED AFTER: ${adaptedPosts.length}');
+    print('**** ADAPTED AFTER: ${adaptedPosts.length} ****');
+    print('**** NEW POSTS: ${posts.length} <=> ADDED: $addedPostsNumber ****');
     for(var post in adaptedPosts){
       await _postsBox?.put(post.postId, post);
     }
@@ -65,12 +67,12 @@ class LocalDatabase{
     await _postsBox?.clear();
   }
 
-  static Future<void> addPage (int page) async {
+  static Future<void> setPage (int page) async {
     _paginationBox?.put('page', page);
   }
 
   static int getPage(){
-    int page = _paginationBox?.get('page', defaultValue: 0) ?? 0;
+    int page = _paginationBox?.get('page', defaultValue: 1) ?? 1;
     return page;
   }
 
