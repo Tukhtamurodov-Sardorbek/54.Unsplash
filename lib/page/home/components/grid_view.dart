@@ -4,74 +4,65 @@ import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:marquee/marquee.dart';
 import 'package:flutter/material.dart';
-import 'package:unsplash/bloc/bloc.dart';
+import 'package:unsplash/bloc/post/bloc.dart';
 import 'package:unsplash/data/local/posts.dart';
 import 'package:glassmorphism/glassmorphism.dart';
+import 'package:unsplash/page/home/components/extension.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:unsplash/page/home/components/extension.dart';
 
 class PostsView extends StatelessWidget {
-  final List<LocalPost> posts;
-  const PostsView({Key? key, required this.posts}) : super(key: key);
+  const PostsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      Scrollbar(
-        thickness: 5,
-        interactive: true,
-        child: MasonryGridView.builder(
-          padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
-          physics: const ClampingScrollPhysics(),
-          mainAxisSpacing: 4,
-          crossAxisSpacing: 4,
-          gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-          ),
-          itemCount: posts.length,
-          itemBuilder: (context, index) {
-            final LocalPost post = posts[index];
-            return PostWidget(post: post, index: index);
-          },
-        ),
+      BlocListener<PostBloc, PostState>(
+        listener: (BuildContext context, PostState state) {},
+        child: BlocBuilder<PostBloc, PostState>(builder: (context, state) {
+          return LazyLoadScrollView(
+            onEndOfPage: () {
+              print('Load More');
+              context.read<PostBloc>().add(LoadMoreEvent());
+            },
+            child: Scrollbar(
+              thickness: 5,
+              interactive: true,
+              child: MasonryGridView.builder(
+                padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
+                physics: const ClampingScrollPhysics(),
+                mainAxisSpacing: 4,
+                crossAxisSpacing: 4,
+                gridDelegate:
+                    const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                ),
+                itemCount: state.posts.length,
+                itemBuilder: (context, index) {
+                  final LocalPost post = state.posts[index];
+                  return PostWidget(post: post, index: index);
+                },
+              ),
+            ),
+          );
+        }),
       ),
       Positioned(
-        bottom: 8,
+        top: 0,
         right: 14,
-        left: 14,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextButton.icon(
-              onPressed: () {
-                context.read<PostBloc>().add(ClearEvent());
-              },
-              icon: const Icon(Icons.delete),
-              label: const Text('Delete All'),
-              style: TextButton.styleFrom(
-                primary: Colors.black,
-                backgroundColor: Colors.cyanAccent,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)
-                )
-              ),
-            ),
-            TextButton.icon(
-              onPressed: () {
-                context.read<PostBloc>().add(LoadMoreEvent());
-              },
-              icon: const Icon(Icons.cloud_download),
-              label: const Text('Load More'),
-              style: TextButton.styleFrom(
-                primary: Colors.black,
-                backgroundColor: Colors.cyanAccent,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)
-                )
-              ),
-            ),
-          ],
+        child: TextButton.icon(
+          onPressed: () {
+            context.read<PostBloc>().add(ClearEvent());
+          },
+          icon: const Icon(Icons.delete),
+          label: const Text('Delete All'),
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.amber.shade200,
+            backgroundColor: Colors.black45,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)),
+          ),
         ),
       ),
     ]);
