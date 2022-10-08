@@ -6,12 +6,10 @@ class LocalDatabase{
   LocalDatabase._();
 
   static Box<LocalPost>? _postsBox;
-  static Box<int>? _paginationBox;
   static LocalDatabase instance = LocalDatabase._();
 
   static Future<LocalDatabase> getInstance() async{
     _postsBox ??= await Hive.openBox<LocalPost>('posts');
-    _paginationBox ??= await Hive.openBox<int>('pagination');
     return instance;
   }
 
@@ -63,20 +61,13 @@ class LocalDatabase{
     }
   }
 
+  static Future<void> setPosts({required List<LocalPost> posts}) async{
+    for(var post in posts){
+      await _postsBox?.put(post.postId, post);
+    }
+  }
+
   static Future<void> removePosts() async{
     await _postsBox?.clear();
-  }
-
-  static Future<void> setPage (int page) async {
-    _paginationBox?.put('page', page);
-  }
-
-  static int getPage(){
-    int page = _paginationBox?.get('page', defaultValue: 1) ?? 1;
-    return page;
-  }
-
-  static Future<void> removePage() async {
-    await _paginationBox?.clear();
   }
 }
