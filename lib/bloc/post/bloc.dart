@@ -67,7 +67,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     } else{
       page = 1;
       print('PAGE: $page');
-      // state.posts = [];
+      state.posts.clear();
       await _addPosts(posts: result);
       await LocalDatabase.removePosts();
       // await LocalDatabase.addPosts(posts: result);

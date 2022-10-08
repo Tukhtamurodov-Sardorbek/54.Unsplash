@@ -14,7 +14,30 @@ class HomePage extends StatelessWidget {
       body: BlocConsumer<PostBloc, PostState>(
         listener: (BuildContext context, PostState state) {
           if (state is LoadingMoreState) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Loading...')));
+            ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.black54,
+                    content: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Theme(
+                          data: ThemeData(
+                            cupertinoOverrideTheme: const CupertinoThemeData(
+                              brightness: Brightness.light,
+                            ),
+                          ),
+                          child: CupertinoActivityIndicator(
+                            radius: 12,
+                            color: Colors.amber.shade200,
+                            animating: true,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Text('Loding...', style: TextStyle(color: Colors.amber.shade200),),
+                      ],
+                    ),
+                ),
+            );
           }
           return;
         },
