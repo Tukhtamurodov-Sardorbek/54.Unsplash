@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:unsplash/data/local/posts.dart';
 import 'package:unsplash/data/local/hive_database.dart';
 import 'package:unsplash/data/model/post.dart';
@@ -34,9 +33,9 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       // await LocalDatabase.addPosts(posts: result);
       // final posts = LocalDatabase.getPosts().values.toList();
       await Future.delayed(const Duration(seconds: 6));
-      emit(LoadedState(posts: state.posts));
       // emit(LoadedState(posts: allPosts));
       // emit(LoadedState(posts: posts));
+      emit(LoadedState(posts: state.posts));
     }
   }
 
@@ -53,9 +52,9 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       /// TODO: In case there is no Internet
       // await LocalDatabase.addPosts(posts: result);
       // final posts = LocalDatabase.getPosts().values.toList();
-      emit(LoadedState(posts: state.posts));
       // emit(LoadedState(posts: allPosts));
       // emit(LoadedState(posts: posts));
+      emit(LoadedState(posts: state.posts));
     }
   }
 
@@ -73,8 +72,9 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       await LocalDatabase.removePosts();
       // await LocalDatabase.addPosts(posts: result);
       // final posts = LocalDatabase.getPosts().values.toList();
-      emit(LoadedState(posts: state.posts));
       // emit(LoadedState(posts: allPosts));
+      // emit(LoadedState(posts: posts));
+      emit(LoadedState(posts: state.posts));
     }
   }
 
