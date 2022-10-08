@@ -7,8 +7,8 @@ import 'package:unsplash/data/local/hive_database.dart';
 import 'package:unsplash/data/model/post.dart';
 import 'package:unsplash/data/repository/photo_repository.dart';
 
-part 'event.dart';
-part 'state.dart';
+part 'events.dart';
+part 'states.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
   final PostRepository photoRepository;
