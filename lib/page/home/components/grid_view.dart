@@ -17,8 +17,7 @@ class PostsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      BlocConsumer<PostBloc, PostState>(
-          listener: (BuildContext context, PostState state) {},
+      BlocBuilder<PostBloc, PostState>(
           builder: (context, state) {
             return LazyLoadScrollView(
               onEndOfPage: () {
@@ -33,8 +32,7 @@ class PostsView extends StatelessWidget {
                   physics: const ClampingScrollPhysics(),
                   mainAxisSpacing: 4,
                   crossAxisSpacing: 4,
-                  gridDelegate:
-                      const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                   ),
                   itemCount: state.posts.length,
