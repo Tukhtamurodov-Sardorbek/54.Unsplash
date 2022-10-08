@@ -41,7 +41,6 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
   FutureOr<void> _onLoadMoreEvent(LoadMoreEvent event, Emitter<PostState> emit) async{
     emit(LoadingMoreState(posts: state.posts));
-    print('PAGE: $page');
     final result = await photoRepository.getPosts(page: page + 1);
     if (result is String) {
       emit(ErrorState(errorMessage: result));
