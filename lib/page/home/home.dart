@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
           if (state is LoadingMoreState) {
             ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  backgroundColor: Colors.black54,
+                  backgroundColor: Colors.black45,
                     content: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

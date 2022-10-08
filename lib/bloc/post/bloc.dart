@@ -77,7 +77,6 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     }
   }
 
-
   Future<void> _addPosts({required List<Post> posts}) async{
     final allPostsID = state.posts.map((e) => e.postId).toList();
 
