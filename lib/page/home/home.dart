@@ -24,9 +24,9 @@ class HomePage extends StatelessWidget {
             return const Center(child: CupertinoActivityIndicator());
           } else if (state is LoadingState) {
             return const Loader();
-          } else if (state is LoadingMoreState) {
-            return const Center(child: CupertinoActivityIndicator());
-          } else if (state is LoadedState) {
+          // } else if (state is LoadingMoreState) {
+          //   return const Center(child: CupertinoActivityIndicator());
+          } else if (state is LoadedState || state is LoadingMoreState) {
             return const PostsView();
           } else if (state is ErrorState) {
             return Center(child: Text(state.errorMessage));

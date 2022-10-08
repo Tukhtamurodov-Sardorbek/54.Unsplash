@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:unsplash/data/local/posts.dart';
 import 'package:unsplash/data/local/hive_database.dart';
 import 'package:unsplash/data/model/post.dart';
@@ -13,7 +14,7 @@ part 'states.dart';
 class PostBloc extends Bloc<PostEvent, PostState> {
   final PostRepository photoRepository;
   int page = 1;
-  List<LocalPost> allPosts = [];
+  // List<LocalPost> allPosts = [];
 
   PostBloc(this.photoRepository) : super(InitialState()) {
     on<LoadEvent>(_onLoadEvent);
@@ -22,7 +23,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
   }
 
   FutureOr<void> _onLoadEvent(LoadEvent event, Emitter<PostState> emit) async{
-    emit(LoadingState());
+    emit(LoadingState(posts: state.posts));
     final result = await photoRepository.getPosts(page: 1);
     if (result is String) {
       await Future.delayed(const Duration(seconds: 6));
@@ -33,13 +34,14 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       // await LocalDatabase.addPosts(posts: result);
       // final posts = LocalDatabase.getPosts().values.toList();
       await Future.delayed(const Duration(seconds: 6));
-      emit(LoadedState(posts: allPosts));
+      emit(LoadedState(posts: state.posts));
+      // emit(LoadedState(posts: allPosts));
       // emit(LoadedState(posts: posts));
     }
   }
 
   FutureOr<void> _onLoadMoreEvent(LoadMoreEvent event, Emitter<PostState> emit) async{
-    emit(LoadingMoreState());
+    emit(LoadingMoreState(posts: state.posts));
     print('PAGE: $page');
     final result = await photoRepository.getPosts(page: page + 1);
     if (result is String) {
@@ -51,13 +53,14 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       /// TODO: In case there is no Internet
       // await LocalDatabase.addPosts(posts: result);
       // final posts = LocalDatabase.getPosts().values.toList();
-      emit(LoadedState(posts: allPosts));
+      emit(LoadedState(posts: state.posts));
+      // emit(LoadedState(posts: allPosts));
       // emit(LoadedState(posts: posts));
     }
   }
 
   FutureOr<void> _onClearEvent(ClearEvent event, Emitter<PostState> emit) async{
-    emit(LoadingState());
+    emit(LoadingState(posts: state.posts));
     final result = await photoRepository.getPosts(page: 1);
     // await Future.delayed(const Duration(seconds: 3));
     if (result is String) {
@@ -70,16 +73,17 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       await LocalDatabase.removePosts();
       // await LocalDatabase.addPosts(posts: result);
       // final posts = LocalDatabase.getPosts().values.toList();
-      emit(LoadedState(posts: allPosts));
+      emit(LoadedState(posts: state.posts));
+      // emit(LoadedState(posts: allPosts));
     }
   }
 
 
   Future<void> _addPosts({required List<Post> posts}) async{
-    final allPostsID = allPosts.map((e) => e.postId).toList();
+    final allPostsID = state.posts.map((e) => e.postId).toList();
 
     int addedPostsNumber = 0;
-    print('**** ADAPTED BEFORE: ${allPosts.length} ****');
+    print('**** ADAPTED BEFORE: ${state.posts.length} ****');
     for(var post in posts){
       bool isExist = allPostsID.contains(post.id);
       if(!isExist){
@@ -109,13 +113,13 @@ class PostBloc extends Bloc<PostEvent, PostState> {
           portfolio_url: post.user.social.portfolio_url,
         );
 
-        allPosts.add(p);
+        state.posts.add(p);
       }
     }
-    print('**** ADAPTED AFTER: ${allPosts.length} ****');
+    print('**** ADAPTED AFTER: ${state.posts.length} ****');
     print('**** NEW POSTS: ${posts.length} <=> ADDED: $addedPostsNumber ****');
 
     await LocalDatabase.removePosts();
-    await LocalDatabase.setPosts(posts: allPosts);
+    await LocalDatabase.setPosts(posts: state.posts);
   }
 }

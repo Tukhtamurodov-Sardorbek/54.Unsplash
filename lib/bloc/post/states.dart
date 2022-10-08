@@ -13,11 +13,13 @@ class InitialState extends PostState {
 }
 
 class LoadingState extends PostState {
-  LoadingState() : super(posts: []);
+  final List<LocalPost> posts;
+  LoadingState({required this.posts}) : super(posts: posts);
 }
 
 class LoadingMoreState extends PostState {
-  LoadingMoreState() : super(posts: []);
+final List<LocalPost> posts;
+LoadingMoreState({required this.posts}) : super(posts: posts);
 }
 
 class LoadedState extends PostState {
