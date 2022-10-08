@@ -1,8 +1,8 @@
 part of 'bloc.dart';
 
 abstract class PostState extends Equatable {
-  final List<LocalPost> posts;
-  const PostState({required this.posts});
+  List<LocalPost> posts;
+  PostState({required this.posts});
 
   @override
   List<Object> get props => [posts];
@@ -16,9 +16,13 @@ class LoadingState extends PostState {
   LoadingState() : super(posts: []);
 }
 
+class LoadingMoreState extends PostState {
+  LoadingMoreState() : super(posts: []);
+}
+
 class LoadedState extends PostState {
   final List<LocalPost> posts;
-  const LoadedState({required this.posts}) : super(posts: posts);
+  LoadedState({required this.posts}) : super(posts: posts);
 }
 
 class ErrorState extends PostState {

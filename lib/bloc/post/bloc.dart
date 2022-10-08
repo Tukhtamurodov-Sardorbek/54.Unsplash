@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:unsplash/data/local/posts.dart';
 import 'package:unsplash/data/local/hive_database.dart';
+import 'package:unsplash/data/model/post.dart';
 import 'package:unsplash/data/repository/photo_repository.dart';
 
 part 'event.dart';
@@ -11,6 +12,8 @@ part 'state.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
   final PostRepository photoRepository;
+  int page = 1;
+  List<LocalPost> allPosts = [];
 
   PostBloc(this.photoRepository) : super(InitialState()) {
     on<LoadEvent>(_onLoadEvent);
@@ -25,25 +28,31 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       await Future.delayed(const Duration(seconds: 6));
       emit(ErrorState(errorMessage: result));
     } else{
-      await LocalDatabase.addPosts(posts: result);
+      await _addPosts(posts: result);
       /// TODO: In case there is no Internet
-      final posts = LocalDatabase.getPosts().values.toList();
+      // await LocalDatabase.addPosts(posts: result);
+      // final posts = LocalDatabase.getPosts().values.toList();
       await Future.delayed(const Duration(seconds: 6));
-      emit(LoadedState(posts: posts));
+      emit(LoadedState(posts: allPosts));
+      // emit(LoadedState(posts: posts));
     }
   }
 
   FutureOr<void> _onLoadMoreEvent(LoadMoreEvent event, Emitter<PostState> emit) async{
-    int page = LocalDatabase.getPage() + 1;
-    print('PAGE: ${LocalDatabase.getPage()} => $page');
-    final result = await photoRepository.getPosts(page: page);
+    emit(LoadingMoreState());
+    print('PAGE: $page');
+    final result = await photoRepository.getPosts(page: page + 1);
     if (result is String) {
       emit(ErrorState(errorMessage: result));
     } else{
-      await LocalDatabase.setPage(page);
-      await LocalDatabase.addPosts(posts: result);
-      final posts = LocalDatabase.getPosts().values.toList();
-      emit(LoadedState(posts: posts));
+      page += 1;
+      print('PAGE: $page');
+      await _addPosts(posts: result);
+      /// TODO: In case there is no Internet
+      // await LocalDatabase.addPosts(posts: result);
+      // final posts = LocalDatabase.getPosts().values.toList();
+      emit(LoadedState(posts: allPosts));
+      // emit(LoadedState(posts: posts));
     }
   }
 
@@ -54,11 +63,59 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     if (result is String) {
       emit(ErrorState(errorMessage: result));
     } else{
-      await LocalDatabase.setPage(1);
+      page = 1;
+      print('PAGE: $page');
+      // state.posts = [];
+      await _addPosts(posts: result);
       await LocalDatabase.removePosts();
-      await LocalDatabase.addPosts(posts: result);
-      final posts = LocalDatabase.getPosts().values.toList();
-      emit(LoadedState(posts: posts));
+      // await LocalDatabase.addPosts(posts: result);
+      // final posts = LocalDatabase.getPosts().values.toList();
+      emit(LoadedState(posts: allPosts));
     }
+  }
+
+
+  Future<void> _addPosts({required List<Post> posts}) async{
+    final allPostsID = allPosts.map((e) => e.postId).toList();
+
+    int addedPostsNumber = 0;
+    print('**** ADAPTED BEFORE: ${allPosts.length} ****');
+    for(var post in posts){
+      bool isExist = allPostsID.contains(post.id);
+      if(!isExist){
+        addedPostsNumber += 1;
+        final p = LocalPost(
+          postId: post.id,
+          postWidth: post.width,
+          postHeight: post.height,
+          postColor: post.color,
+          postBlurHash: post.blur_hash,
+          postDescription: post.description,
+          postAltDescription: post.alt_description,
+          postFullURL: post.urls.full,
+          postSmallURL: post.urls.small,
+          postDownloadLink: post.links.download,
+          userID: post.user.id,
+          userName: post.user.username,
+          name: post.user.name,
+          firstName: post.user.first_name,
+          lastName: post.user.last_name,
+          smallProfileImage: post.user.profile_image.small,
+          totalPhotos: post.user.total_photos,
+          totalLikes: post.user.total_likes,
+          instagramUsername: post.user.social.instagram_username,
+          twitterUsername: post.user.social.twitter_username,
+          paypalEmail: post.user.social.paypal_email,
+          portfolio_url: post.user.social.portfolio_url,
+        );
+
+        allPosts.add(p);
+      }
+    }
+    print('**** ADAPTED AFTER: ${allPosts.length} ****');
+    print('**** NEW POSTS: ${posts.length} <=> ADDED: $addedPostsNumber ****');
+
+    await LocalDatabase.removePosts();
+    await LocalDatabase.setPosts(posts: allPosts);
   }
 }
