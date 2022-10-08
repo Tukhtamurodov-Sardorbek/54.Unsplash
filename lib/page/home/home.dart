@@ -11,13 +11,21 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<PostBloc, PostState>(
+      body: BlocConsumer<PostBloc, PostState>(
+        listener: (BuildContext context, PostState state) {
+          if (state is LoadingMoreState) {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Loading...')));
+          }
+          return;
+        },
         builder: (context, state) {
           if (state is InitialState) {
             context.read<PostBloc>().add(LoadEvent());
             return const Center(child: CupertinoActivityIndicator());
           } else if (state is LoadingState) {
             return const Loader();
+          } else if (state is LoadingMoreState) {
+            return const Center(child: CupertinoActivityIndicator());
           } else if (state is LoadedState) {
             return const PostsView();
           } else if (state is ErrorState) {
