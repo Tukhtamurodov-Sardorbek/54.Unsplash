@@ -1,3 +1,4 @@
+import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
@@ -7,7 +8,6 @@ import 'package:unsplash/bloc/post/bloc.dart';
 import 'package:unsplash/data/local/posts.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:unsplash/core/extension.dart';
-import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -16,35 +16,36 @@ class PostsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      BlocBuilder<PostBloc, PostState>(
+    final scrollController = ScrollController();
+    return Stack(
+        children: [
+          BlocBuilder<PostBloc, PostState>(
           builder: (context, state) {
-            return LazyLoadScrollView(
-              onEndOfPage: () {
-                print('Load More');
-                context.read<PostBloc>().add(LoadMoreEvent());
-              },
-              child: Scrollbar(
-                thickness: 5,
-                interactive: true,
-                child: MasonryGridView.builder(
-                  padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
-                  physics: const ClampingScrollPhysics(),
-                  mainAxisSpacing: 4,
-                  crossAxisSpacing: 4,
-                  gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
-                  itemCount: state.posts.length,
-                  itemBuilder: (context, index) {
-                    final LocalPost post = state.posts[index];
-                    return PostWidget(post: post, index: index);
-                  },
+            return DraggableScrollbar.semicircle(
+              controller: scrollController,
+              child: MasonryGridView.builder(
+                controller: scrollController..addListener(() {
+                  if(scrollController.offset == scrollController.position.maxScrollExtent){
+                    print('Load More');
+                    context.read<PostBloc>().add(LoadMoreEvent());
+                  }
+                }),
+                padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
+                physics: const ClampingScrollPhysics(),
+                mainAxisSpacing: 4,
+                crossAxisSpacing: 4,
+                gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
                 ),
+                itemCount: state.posts.length,
+                itemBuilder: (context, index) {
+                  final LocalPost post = state.posts[index];
+                  return PostWidget(post: post, index: index);
+                },
               ),
             );
           }),
-      Positioned(
+          Positioned(
         top: 0,
         right: 14,
         child: Column(
@@ -78,7 +79,8 @@ class PostsView extends StatelessWidget {
           ],
         ),
       ),
-    ]);
+        ],
+    );
   }
 }
 
