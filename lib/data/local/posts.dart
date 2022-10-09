@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 part 'posts.g.dart';
 
-@HiveType(typeId: 1, adapterName: 'HiveAdapter')
+@HiveType(typeId: 1, adapterName: 'PostsAdapter')
 class LocalPost extends HiveObject {
   @HiveField(0)
   final String? postId;

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:unsplash/bloc/post/bloc.dart';
 import 'package:unsplash/data/local/posts.dart';
 import 'package:glassmorphism/glassmorphism.dart';
-import 'package:unsplash/page/home/components/extension.dart';
+import 'package:unsplash/core/extension.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';

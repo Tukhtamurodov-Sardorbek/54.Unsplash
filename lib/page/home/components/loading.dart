@@ -5,6 +5,10 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> loading(BuildContext c
   return ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       backgroundColor: Colors.black45,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      behavior: SnackBarBehavior.floating,
+      dismissDirection: DismissDirection.horizontal,
+
       content: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
